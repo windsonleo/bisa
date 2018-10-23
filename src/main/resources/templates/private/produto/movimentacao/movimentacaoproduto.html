@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+		<link rel="stylesheet" media="screen"
+	href="resources/static/css/dataTables.bootstrap.css"
+	th:href="@{/css/dataTables.bootstrap.css}" type="text/css" />
+	
+	</head>
+		
+		<title>Movimentacao Produto</title>
+
+<body  class="theme-red">
+				    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING..." />
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+			
+
+	   			  <nav th:replace="fragmentos/top-nav :: top-nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+    
+    
+		<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    PRODUTO
+<!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                MOVIMENTACAO PRODUTO
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a th:href="@{/produto/cadastro}">Add</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="hide">Id</th>
+                                             <th >Foto</th>
+                                            <th >Nome</th>
+                                            <th >Categoria</th>
+<!--                                              <th >CPF</th> -->
+<!--                                              <th >Data Nascimento</th> -->
+                                            <th >Ativo</th>
+<!--                                             <th >Resultado</th> -->
+                                            
+                                   
+                                            
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
+                                   <th >OPERACOES</th>
+                                   
+                                  
+                                  
+                                  </div>
+                                    </tr>
+                                            
+<!--                                             <th >2º Premio</th> -->
+<!--                                             <th >3º Premio</th> -->
+<!--                                             <th >4º Premio</th> -->
+<!--                                             <th >5º Premio</th> -->
+
+		
+
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr th:each="produto: ${produtoList}">
+                                                <td th:text="${produto.id}" class="hide">id</td>
+<!--                                            <td><img th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" class="img-circle img-sm" alt="fotoPaciente"/></td> -->
+                                                 <td><img th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" class="img-circle img-sm" width="48" height="48" alt="fotouser"/></td>
+                                                
+                                                  <td th:text="${produto.nome}">nome</td>
+                                                   <td th:text="${produto.categoria}">telefone</td>
+<!--                                                     <td th:text="${produto.cpf}">cpf</td> -->
+<!--                                                   <td th:text="${#dates.format(produto.datanascimento,'dd-MM-yyyy')}">Data</td> -->
+                                                  
+		                                            <td th:text="${produto.ativo}">ativo</td>
+<!-- 		                                             <td th:text="${jogobicho.banca}">Banca</td> -->
+		                                            
+<!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
+		                                          
+		                                         <td>
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                            
+	                                             
+	                                              <div class="btn-group-horizontal" >
+                                                        <a  rel="tooltip" title="Perfil" class="" th:href="@{/produto/perfil(id=${produto.id})}">
+                                    						<i class="material-icons">info</i>
+			                       						</a>
+	                       						 
+                                                        <a  rel="tooltip" title="Editar" class="" th:href="@{/produto/editar(id=${produto.id})}">
+                                    						<i class="material-icons">mode edit</i>
+			                       						</a>
+	                       								                                            
+		                                            																									
+                                                        <a  rel="tooltip" title="Excluir" class="" th:href="@{/produto/delete(id=${produto.id})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>
+	                       						</div>
+	                       						 		
+	                       						 
+					                            </div>
+		                                            </td>
+		                                         
+		                                            
+		                                            
+<!-- 		                                            <td th:text="${jogobicho.segundopremio}" >2º Premio</td> -->
+<!-- 		                                            <td th:text="${jogobicho.terceiropremio}" > 3º Premio</td> -->
+<!-- 		                                            <td th:text="${jogobicho.quartopremio}" >4º Premio </td> -->
+<!-- 		                                            <td th:text="${jogobicho.quintopremio}" >5º Premio</td> -->
+		                      
+		 
+
+		
+                                        
+                                            </tr>
+                                           
+                                           
+                                      
+                                        </tbody>
+                                    </table>
+                                </div>
+		
+
+				<div class="clearfix"></div>
+
+
+             <div th:replace="fragmentos/footer :: footer">
+            
+            </div>
+            
+            
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+</div>	
+
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+
+</div>
+</section>
+
+			
+</body>
+			
+			
+</html>
+

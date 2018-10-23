@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro de Clientes</title>
+
+<body  class="theme-red">
+				    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING..." />
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+			
+
+	   			  <nav th:replace="fragmentos/top-nav :: top-nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+    
+    
+		<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    CLIENTE
+<!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+            
+               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+			  <div class="header">
+                            <h2>
+                                foto cliente
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+<!--                                         <li><a th:href="@{/usuario/cadastro}">Add</a></li> -->
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+        
+        			<form th:action="@{/cliente/salvarfotocliente}" th:object="${cliente}" ModelAttribute="cliente"  enctype="multipart/form-data"  method="post">
+        
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+              <h3 class="widget-user-username" th:text="${cliente.nome}">Nome do Cliente</h3>
+              <h5 class="widget-user-desc" th:text="${cliente.email}">Tipo &amp; TERAPIA</h5>
+            </div>
+            
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/> -->
+<!--             </div> -->
+            
+                        <div class="widget-user-image" th:unless="${cliente.foto}">
+              <img class="img-circle" th:src="@{/img/cliente/{fotoc}(fotoc=${filename})}" alt="User Avatar file unles"/>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${cliente.foto}">
+              <img class="img-circle" th:src="@{/img/cliente/{fotoc}(fotoc=${cliente.foto})}" alt="User Avatar pac if"/>
+            </div>
+            
+<!--                                    <div class="widget-user-image" th:unless="${cliente.foto}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/avatar2.png}" alt="User Avatar pac unlesss"/> -->
+<!--             </div> -->
+            
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="description-block">
+                    <div class="form-group">
+                  <label for="file">Escolha a Foto</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+<!--                   <p class="help-block">Example block-level help text here.</p> -->
+                </div>
+                    <h5 class="description-header" th:unless="${cliente.id}">
+                    
+	                    <button class="btn btn-block btn-primary disabled" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
+                    
+                    </h5>
+                    
+                                        <h5 class="description-header" th:if="${cliente.id}">
+                    
+	                    <button class="btn btn-block btn-primary disabled" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
+                    
+                    </h5>
+                    
+                    
+                    
+                    
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  
+
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+          	
+          
+        </div>
+            </div>
+            </div>
+            
+            
+            
+            			 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			 <div class="card">
+			  <div class="header">
+                            <h2>
+                                DADOS CLIENTE
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+<!--                                         <li><a th:href="@{/usuario/cadastro}">Add</a></li> -->
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+			 
+				 <form th:action="@{/cliente/add}" ModelAttribute="cliente" method="POST" th:object="${cliente}">      
+      
+                  
+                             
+             <div class="form group">               
+			<div class="checkbox">
+                <label>
+				<input id="ativo" name="optionsCheckboxes"  type="checkbox" th:checked="${cliente.ativo}" class="checkbox"/>Ativo?
+				</label>
+              </div>
+              
+
+              
+              
+              </div> 
+
+						<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                  </div>
+                                    <input id="id" class="form-control" name="id" type="text" th:value="${cliente.id}"
+                                           placeholder="Nao Preencha este Campo" readonly="readonly"/> 
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                            <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                                    <input autocomplete="off" id="nome" class="form-control" name="nome" type="text" th:value="${cliente.nome}"
+                                           placeholder="Nome"> </input>
+                                </div>
+                            </div>
+
+                            
+                           <div class="form-group label-floating ">
+<!--                             <div class="control-group"> -->
+ <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-phone-square"></i>
+                  </div>
+                                    <input autocomplete="off" id="telefone" class="form-control" name="telefone" type="text" th:value="${cliente.telefone}"
+                                           placeholder="telefone"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                        <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-tag"></i>
+                  </div>
+                                    <input autocomplete="off" id="cpf" class="form-control" name="cpf" type="text" th:value="${cliente.cpf}"
+                                           placeholder="Cpf"> </input>
+                                </div>
+                            </div>
+
+                            
+                                                        
+                            <div class="form-group label-floating ">
+<!--                             <div class="control-group"> -->
+<!--                                 <label class="control-label">Data Nascimento</label> -->
+                                                    <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                                    <input autocomplete="off" id="datanascimento" class="form-control pull-right" name="datanascimento" type="text" th:field="*{datanascimento}"
+                                           placeholder="Data Nascimento" />
+                                </div>
+                                </div>
+
+                            
+                            
+							
+							<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+                  <label>Escolha o tipo de Genero</label>
+
+                                    <select id="genero" name="genero" class="form-control select2">
+                                        <optgroup label="Escolha o tipo genero">
+
+                                            <option th:value="${cliente.genero}" th:selected="selected"
+                                            th:utext="${cliente.genero}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipoterapia: ${genero}" th:value="${tipoterapia}" th:utext="${tipoterapia}"> tipo </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+   
+
+                            
+
+   
+                            
+                           <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+                                    <input th:unless="${cliente.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
+                                           placeholder="Foto"> </input>
+                                           
+                                        <input   th:if="${cliente.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${cliente.foto}"
+                                           placeholder="Foto"> </input>
+                                           
+                                           
+                                </div>
+                            </div>
+                            
+                                                       <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar-plus-o"></i>
+                  </div>
+                                    <input autocomplete="off" id="email" class="form-control" name="email" type="text" th:value="${cliente.email}"
+                                           placeholder="email"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                             <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-pencil-square-o"></i>
+                  </div>
+                            <textarea id="obs" autocomplete="off" class="form-control" name="obs"  th:placeholder="${cliente.obs}" th:value="${cliente.obs}"></textarea>
+                            </div>
+                            </div>
+<!--                             </div> -->
+                            
+                            
+                            <div class="form-actions">
+                                <input type="submit" th:value="${acao}" class="btn btn-success"> </input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<!--         </div> -->
+        
+        
+        
+     
+        
+        
+        
+        
+        
+    </div>
+		
+		
+            
+            
+
+</div>
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+
+	</section>
+	
+			
+</body>
+			
+			
+</html>
+

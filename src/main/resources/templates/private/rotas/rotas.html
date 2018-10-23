@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+<!-- 			<link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/maps.css" -->
+<!-- 	th:href="@{/css/maps.css}" type="text/css" /> -->
+
+<!-- 	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUyMYsukxj_Dp3UqiVCjEssZelR9gWlss" -->
+<!--       th:src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyDUyMYsukxj_Dp3UqiVCjEssZelR9gWlss}"> -->
+<!--     </script> -->
+    
+<!--     	<script  type="text/javascript"> -->
+      
+//     	var map;
+      
+//       function initialize() {
+    	  
+//     	  var myLatlng = new google.maps.LatLng(-8.0631495, -34.87131120000004);
+//     	  var mapOptions = {
+//     	  zoom: 17,
+//     	  center: myLatlng,
+//     	  mapTypeId: google.maps.MapTypeId.ROADMAP
+//     	}
+    	  
+    	  
+//         map = new google.maps.Map(document.getElementById("maper"),mapOptions);
+        
+//       }
+      
+//       google.maps.event.addDomListener(window, 'load', initialize);
+      
+//       $(document).ready(function(){
+//     	  initialize();
+//     	});
+<!--     </script> -->
+    
+	
+	</head>
+		
+		<title>Rotas</title>
+
+			<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+				
+		  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Rotas
+        <small>Controle de  Rotas</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Rotas</a></li>
+        <li class="active">Rotas</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+     
+ 	<div id="maper"></div> 
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+	
+		</div>	
+		
+
+		
+		
+					
+		
+		
+		
+<!-- 								<script src="http://rawgit.com/HPNeo/gmaps/master/gmaps.js" -->
+<!-- 			th:src="@{http://rawgit.com/HPNeo/gmaps/master/gmaps.js}" th:inline="javascript" ></script> -->
+		
+
+		
+<!-- 		<script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEEHTuWU99vzB3diFQqZmbNki3xpWz2b8&callback=initMap"></script> -->
+		
+
+
+
+		
+</body>
+			
+			
+</html>
+

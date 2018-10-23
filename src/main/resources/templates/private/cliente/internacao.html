@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+
+	
+	</head>
+		
+		<title>Internacao</title>
+
+			<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+				
+		  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Internacao
+        <small>Internacao de Paciente</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Paciente</a></li>
+        <li class="active">Internacao</li>
+      </ol>
+    </section>
+	
+  <section class="content">
+  
+		<div class="row">
+        
+		  <div th:each="paciente: ${pacientesInternados}"  class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-teal">
+              <div class="widget-user-image">
+                <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar" />
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username" th:utext="${paciente.nome}" >Nadia Carmichael</h3>
+              <h5 class="widget-user-desc" th:utext="${paciente.tipoterapia}">Lead Developer</h5>
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+
+		
+      </div>
+         			
+	</section>
+				
+				
+	</div>
+				
+				
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+				
+</div>
+				
+</body>
+
+</html>

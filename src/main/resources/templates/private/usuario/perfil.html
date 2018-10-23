@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+
+	
+	</head>
+		
+		<title>Perfil</title>
+
+			<body  class="theme-red">
+				    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING..." />
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+			
+
+	   			  <nav th:replace="fragmentos/top-nav :: top-nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+    
+    
+		<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    PERFIL
+<!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+  
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" alt="User profile picture"/>
+
+              <h3 class="profile-username text-center" th:utext="${usuarioAtt.email}">Nina Mcintire</h3>
+
+              <p class="text-muted text-center" th:utext="${usuarioAtt.roles}">Software Engineer</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Atendimentos</b> <a class="pull-right">1,322</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Atividades</b> <a class="pull-right">543</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Friends</b> <a class="pull-right">13,287</a>
+                </li>
+              </ul>
+
+              <a th:href="@{/usuario/editar(id=${usuarioAtt.id})}" class="btn btn-primary btn-raised btn-block"><b>Editar Usuario</b></a>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">About Me</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+              <p class="text-muted">
+                B.S. in Computer Science from the University of Tennessee at Knoxville
+              </p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+              <p class="text-muted">Malibu, California</p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+              <p>
+                <span class="label label-danger">UI Design</span>
+                <span class="label label-success">Coding</span>
+                <span class="label label-info">Javascript</span>
+                <span class="label label-warning">PHP</span>
+                <span class="label label-primary">Node.js</span>
+              </p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+       
+      
+      </div>
+      
+         </div>
+         			
+	</section>
+				
+
+				
+				
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+				
+				
+</body>
+
+</html>

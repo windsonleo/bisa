@@ -1,0 +1,532 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro de Pacientes</title>
+
+<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+					  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Pacientes
+        <small>Patologia</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Pacientes</a></li>
+        <li class="active"><a href="#">Patologia</a></li>
+<!--         <li class="active">Blank page</li> -->
+      </ol>
+    </section>
+    
+    
+		 <div class="content">
+				
+				
+<!-- 				mensagens do sistema  -->
+				
+		<div class="row-fluid" th:if="${sucesso}">
+					
+			<div class="alert alert-success">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">check</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${sucesso}">
+					
+					
+					
+					</span>
+					
+					<span class="btn btn-sm btn-warning"><a th:href="@{/paciente/cadastro}"><i></i>Novo</a></span>
+					<span class="btn btn-sm btn-warning"><a th:href="@{/paciente/editar(id=${paciente.id})}"><i></i>Editar</a></span>
+					
+				
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+					
+			<div class="row-fluid" th:if="${erro}">
+					
+			<div class="alert alert-danger">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">error</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${erro}"></span>
+				
+					<span class="btn btn-sm btn-warning"><a th:href="@{/paciente/cadastro}"><i></i>Novo</a></span>
+					<span class="btn btn-sm btn-warning"><a th:href="@{/paciente/editar(id=${paciente.id})}"><i></i>Editar</a></span>
+			
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+				
+<!-- fim das mensagens -->
+
+
+<!-- inicio do conteudo  -->
+
+<!-- <div class="row-fluid"> -->
+			        
+			       
+        <form th:action="@{/paciente/AddPatologia(id=${paciente.id})}"  th:object="${paciente}" enctype="multipart/form-data"  method="post">
+			        
+			        
+            <div class="col-md-7 panel">
+		 <div class="col-md-7">
+<!--                       <div class="panel form-element-padding"> -->
+                        <div class="panel-heading">
+                         <h4>Add Patologia de Paciente</h4>
+                        </div>
+                         <div class="panel-body" style="padding-bottom:30px;">
+		 
+			 
+				     
+  
+                             
+                             
+			<div class="checkbox">
+                <label>
+				<input id="ativo" name="optionsCheckboxes"  type="checkbox" th:checked="${paciente.ativo}" class="checkbox"/>Ativo?
+				</label>
+              </div>
+              
+                            <div class="checkbox">
+                <label>
+				<input id="alta" name="optionsCheckboxes"  type="checkbox" th:checked="${paciente.alta}" class="checkbox"/>Alta?
+				</label>
+              </div>
+              
+                            <div class="checkbox">
+                <label>
+				<input id="internacao" name="optionsCheckboxes"  type="checkbox" th:checked="${paciente.internacao}" class="checkbox"/>Internado?
+				</label>
+              </div>
+
+						<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                  </div>
+                                    <input id="id" class="form-control" name="id" type="text" th:value="${paciente.id}"
+                                           placeholder="Nao Preencha este Campo" readonly="readonly"/> 
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                            <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                                    <input id="nome" class="form-control" name="nome" type="text" th:value="${paciente.nome}"
+                                           placeholder="Nome"> </input>
+                                </div>
+                            </div>
+
+                            
+                           <div class="form-group label-floating ">
+<!--                             <div class="control-group"> -->
+ <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-phone-square"></i>
+                  </div>
+                                    <input id="telefone" class="form-control" name="telefone" type="text" th:value="${paciente.telefone}"
+                                           placeholder="telefone"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                        <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-tag"></i>
+                  </div>
+                                    <input id="cpf" class="form-control" name="cpf" type="text" th:value="${paciente.cpf}"
+                                           placeholder="Cpf"> </input>
+                                </div>
+                            </div>
+
+                            
+                                                        
+                            <div class="form-group label-floating ">
+<!--                             <div class="control-group"> -->
+<!--                                 <label class="control-label">Data Nascimento</label> -->
+                                                    <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                                    <input autocomplete="off" id="datanascimento" class="form-control pull-right" name="datanascimento" type="text" th:field="*{datanascimento}"
+                                           placeholder="Data Nascimento"/>
+                                </div>
+                                </div>
+
+                            
+                            
+							
+							<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+
+                                    <select id="tipoterapia" name="tipoterapia" class="form-control">
+                                        <optgroup label="Escolha o tipo de terapia">
+
+                                            <option th:value="${paciente.tipoterapia}" th:selected="selected"
+                                            th:utext="${paciente.tipoterapia}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipoterapia: ${tiposterapia}" th:value="${tipoterapia}" th:utext="${tipoterapia}"> tipo </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                            							<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+
+                                    <select id="plano" name="plano" class="form-control">
+                                        <optgroup label="Escolha o Convenio">
+
+                                            <option th:value="${paciente.plano}" th:selected="selected"
+                                            th:utext="${paciente.plano}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="plano: ${planossaude}" th:value="${plano}" th:utext="${plano}"> planos </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+                              <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+  <label>Escolha Status do Tratamento</label>
+                                    <select id="statustratamento" name="statustratamento" class="form-control select2">
+                                        <optgroup label="Escolha Status do Tratamento">
+
+                                            <option th:value="${paciente.statustratamento}" th:selected="selected"
+                                            th:utext="${paciente.statustratamento}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="plano: ${statustratamento}" th:value="${plano}" th:utext="${plano}"> planos </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                                                        <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar-check-o"></i>
+                  </div>
+                                    <input autocomplete="off" id="datainicio" class="form-control" name="datainicio" type="text" th:field="*{datainicio}"
+                                           placeholder="Data Inicio"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                           
+                                                        <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa  fa-calendar-times-o"></i>
+                  </div>
+                                    <input autocomplete="off" id="datafim" class="form-control" name="datafim" type="text" th:field="*{datafim}"
+                                           placeholder="Data Termino"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                           <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+                                    <input id="foto" class="form-control" name="foto" type="text" th:value="${paciente.foto}"
+                                           placeholder="Foto"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                                                       <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar-plus-o"></i>
+                  </div>
+                                    <input id="frequenciasemanal" class="form-control" name="frequenciasemanal" type="text" th:value="${paciente.frequenciasemanal}"
+                                           placeholder="Frequencia Semanal"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                             <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-pencil-square-o"></i>
+                  </div>
+                            <textarea id="obs" class="form-control" name="obs"  th:placeholder="${paciente.obs}" th:value="${paciente.obs}"></textarea>
+                            </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+<!--         </div> -->
+        
+        
+        
+        <div class="col-md-4" style="margin:5px;">
+                
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-red">
+              <h3 class="widget-user-username" th:text="${paciente.nome}">Nome do Paciente</h3>
+              <h5 class="widget-user-desc" th:text="${paciente.tipoterapia}">Tipo &amp; TERAPIA</h5>
+            </div>
+            
+            
+            <div class="widget-user-image" th:if="${filename}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/>
+            </div>
+                
+            
+                       <div class="widget-user-image" th:if="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar pac"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/avatar2.png}" alt="User Avatar pac unlesss"/>
+            </div>
+            
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                
+              <div class="form-group">
+                <label>Escolha a Patologia</label>
+                <select id="patologias" name="patologias" class="form-control select2" multiple="multiple" data-placeholder="Select a Patologia" style="width: 100%;">
+                  
+                  <option th:text="${paciente.patologias}" th:selected="${paciente.patologias != null}" class="selected">Paciente Não Tem Nenhuma Patologia</option>
+                  
+                  
+       				<option th:each="patologia: ${patologias}" th:value="${patologia.id}" >
+     				
+     				<span th:text="${patologia.nome}" >Nenhuma Patologia Cadastrada </span>
+     				
+     				</option>
+
+                </select>
+              </div>
+
+                  
+                   <div class="description-block">
+
+                                    
+                    <h5 class="description-header">
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add Patologia
+                    <div class="ripple-container"></div>
+                    </button>
+                    
+                    </h5>
+                    
+                  </div>
+                  
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          </div>
+          
+          </form>
+        </div>
+        
+        
+        
+        
+        
+    </div>
+		
+		
+            
+            
+
+</div>
+
+<!-- </div> -->
+
+
+
+	<script src="resources/static/js/jquery-2.2.3.min.js"
+			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
+			
+				<script src="resources/static/js/select2.full.min.js"
+			th:src="@{/js/select2.full.min.js}" th:inline="javascript" ></script>
+			
+											<script src="resources/static/js/bootstrap.min.js"
+			th:src="@{/js/bootstrap.min.js}" th:inline="javascript" ></script>
+			
+						<script src="resources/static/js/material.min.js"
+			th:src="@{/js/material.min.js}" th:inline="javascript" ></script>
+			
+									<script src="resources/static/js/ripples.min.js"
+			th:src="@{/js/ripples.min.js}" th:inline="javascript" ></script>
+			
+			
+			
+									<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"
+			th:src="@{https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js}" th:inline="javascript" ></script>
+			
+			
+								<script src="resources/static/js/daterangepicker.js"
+			th:src="@{/js/daterangepicker.js}" type="text/javascript" ></script>
+			
+						<script src="resources/static/js/bootstrap-datepicker.js"
+			th:src="@{/js/bootstrap-datepicker.js}" th:inline="javascript" ></script>
+			
+			
+			<script type="text/javascript">
+    $.material.init();
+    
+    
+//     $(function () {
+    	
+//     $('#datepicker').datepicker({
+//         autoclose: true
+//       });
+    
+//     });
+</script>
+
+								<script src="resources/static/js/jquery.dataTables.min.js"
+			th:src="@{/js/jquery.dataTables.min.js}" th:inline="javascript" ></script>
+
+								<script src="resources/static/js/dataTables.bootstrap.min.js"
+			th:src="@{/js/dataTables.bootstrap.min.js}" th:inline="javascript" ></script>
+			
+			<script src="resources/static/js/jquery.slimscroll.min.js"
+			th:src="@{/js/jquery.slimscroll.min.js}" th:inline="javascript" ></script>
+	
+			
+						<script src="resources/static/js/fastclick.js"
+			th:src="@{/js/fastclick.js}" th:inline="javascript" ></script>
+			
+					<script src="resources/static/js/app.min.js"
+		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script>
+		 
+		 				<script src="resources/static/js/demo.js"
+			th:src="@{/js/demo.js}"></script>
+			
+				    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+			
+			
+			<script type="text/javascript">
+			
+		     $(function () {
+		    	 
+		    	 $(".select2").select2();
+	    	
+		     $('#datanascimento').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		     
+		     $('#datainicio').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		     
+		     $('#datafim').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		    
+		     });
+			
+			
+			</script>
+			
+</body>
+			
+			
+</html>
+

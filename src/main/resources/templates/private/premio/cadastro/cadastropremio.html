@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro Premio</title>
+
+		<body  class="theme-red">
+				    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING..." />
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+			
+
+	   			  <nav th:replace="fragmentos/top-nav :: top-nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+    
+    
+		<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    Premio
+<!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+            
+            
+            
+            			 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			 <div class="card">
+			  <div class="header">
+                            <h2>
+                                foto Premio
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+<!--                                         <li><a th:href="@{/usuario/cadastro}">Add</a></li> -->
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+            
+            
+            
+            
+            <form th:action="@{/premio/salvarfotopremio}" th:object="${premio}" ModelAttribute="premio"  enctype="multipart/form-data"  method="post">
+        
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+              <h3 class="widget-user-username" th:text="${premio.name}">Nome do Cliente</h3>
+              <h5 class="widget-user-desc" th:text="${premio.desconto}">Tipo &amp; TERAPIA</h5>
+            </div>
+            
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/> -->
+<!--             </div> -->
+            
+                        <div class="widget-user-image" th:unless="${premio.foto}">
+              <img class="img-circle" th:src="@{/img/premio/{fotoc}(fotoc=${filename})}" alt="User Avatar file unles"/>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${premio.foto}">
+              <img class="img-circle" th:src="@{/img/premio/{fotoc}(fotoc=${premio.foto})}" alt="User Avatar pac if"/>
+            </div>
+            
+<!--                                    <div class="widget-user-image" th:unless="${cliente.foto}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/avatar2.png}" alt="User Avatar pac unlesss"/> -->
+<!--             </div> -->
+            
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="description-block">
+                    <div class="form-group">
+                  <label for="file">Escolha a Foto</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+<!--                   <p class="help-block">Example block-level help text here.</p> -->
+                </div>
+                    <h5 class="description-header" th:unless="${premio.id}">
+                    
+	                    <button class="btn btn-block btn-primary disabled" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
+                    
+                    </h5>
+                    
+                                        <h5 class="description-header" th:if="${premio.id}">
+                    
+	                    <button class="btn btn-block btn-primary disabled" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
+                    
+                    </h5>
+                    
+                    
+                    
+                    
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  
+<!--                                     <div class="description-block"> -->
+
+                                    
+<!--                     <h5 class="description-header" th:if="${cliente.id}"> -->
+<!--                     <a class="btn btn-block btn-primary btn-sm"  th:href="@{/cliente/addendereco(id=${cliente.id})}">Add endereco -->
+<!--                     <div class="ripple-container"></div> -->
+<!--                     </a> -->
+                    
+<!--                     </h5> -->
+                    
+                    
+<!--                     <h5 class="description-header" th:unless="${cliente.id}"><a class="btn btn-block btn-primary disabled" th:href="@{/cliente/addendereco(id=${cliente.id})}">Add endereco -->
+<!--                     <div class="ripple-container"></div> -->
+<!--                     </a> -->
+                    
+<!--                     </h5> -->
+                    
+                    
+<!--                     <span class="description-text"><i class="fa fa-map"></i></span> -->
+<!--                   </div> -->
+                  
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+            
+            </div>
+            </div>
+            </div>
+            
+            
+            
+            
+            			 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			 <div class="card">
+			  <div class="header">
+                            <h2>
+                                Dados Premio
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+<!--                                         <li><a th:href="@{/usuario/cadastro}">Add</a></li> -->
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+		 
+			 
+				 <form th:action="@{/premio/add}" ModelAttribute="premio" method="POST">
+
+
+			         <div class="form-group">
+			         		
+			         		    <div class="checkbox">
+                                  
+                                  
+                                  <label>
+                                  <input id="ativo" name="optionsCheckboxes" class="checkbox"  type="checkbox" th:checked="${premio.ativo}"/>
+                                  Ativo</label>
+                                </div>
+			     
+									
+								
+			            </div>
+
+
+			
+<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+							
+										<input id="desconto" name="desconto" class="form-control android" type="text"  th:value="${premio.desconto}" placeholder="Digite o Desconto" />
+							
+			                </div>
+			              </div>
+			
+<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                  </div>
+			               
+										<input id="name" name="name" class="form-control android" type="text"  th:value="${premio.name}" placeholder="Digite a Premio"/>				
+			              </div>
+			              
+			              </div>
+			
+			
+<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+							
+										<input id="foto" name="foto" class="form-control android" type="text"  th:value="${filename}" placeholder="Digite a foto" />
+							
+			                </div>
+			              </div>
+			              
+			              			<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user-secret"></i>
+                  </div>
+				 <select id="produto" name="produto"  class="form-control">
+				                                  <optgroup label="escolha produtos">
+					           				
+					           					<option th:text="${premio.produto}" th:selected="${premio.produto != null}" class="selected">Usuario Não Tem Nenhuma Regra</option>
+					           				
+					           				
+					           			
+					           				<option th:each="produto : ${produtos}" th:value="${produto.id}" >
+					           				
+					           				<span th:text="${produto.nome}" >Nenhuma produto Cadastrada </span>
+					           				
+					           				</option>
+					           				      				
+					           				
+					                </optgroup>
+				                    </select>			
+							
+			                </div>
+			              </div>
+
+			
+			        
+				
+			           
+					 	 
+			                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
+				 	 
+						
+							<button type="submit" class="btn btn-success">Salvar</button>
+							<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
+						
+						</form>
+						
+<!-- 						</div> -->
+                       
+
+
+				
+				
+				<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+
+
+			
+			
+			</div>
+			
+<!-- 			</div> -->
+			
+			</div>
+			
+			
+	
+			
+			
+			</div>
+			
+			
+			
+			
+			</div>
+			</div>
+			
+			</section>
+			
+			
+			</body>
+			
+				
+	
+
+</html>

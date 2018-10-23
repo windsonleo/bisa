@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+
+	
+	</head>
+		
+		<title>Progresso</title>
+
+			<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+				
+		  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Progresso
+        <small>Progresso de Paciente</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Paciente</a></li>
+        <li class="active">Progresso</li>
+      </ol>
+    </section>
+	
+  <section class="content">
+  
+		<div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User profile picture"/>
+
+              <h3 class="profile-username text-center" th:utext="${paciente.nome}">Nina Mcintire</h3>
+
+              <p class="text-muted text-center" th:utext="${paciente.plano}">Software Engineer</p>
+
+              <ul class="list-group list-group-unbordered">
+              
+                              <li class="list-group-item">
+                  <b>Idade</b> <a class="pull-right" th:text="${paciente.CalcularIdade()}">1,322</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Tipo Terapia</b> <a class="pull-right" th:utext="${paciente.tipoterapia}">1,322</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Frequencia</b> <a class="pull-right" th:utext="${paciente.frequenciasemanal}">543</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Telefone</b> <a class="pull-right" th:utext="${paciente.telefone}">13,287</a>
+                </li>
+              </ul>
+
+<!--               <a th:href="@{/paciente/editar(id=${paciente.id})}" class="btn btn-primary btn-raised btn-block"><b>Editar Paciente</b></a> -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Sobre</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Patologias</strong>
+			
+			<div th:each="patologia: ${paciente.patologias}">
+              <p class="text-muted" th:text="${patologia.nome}">
+                B.S. in Computer Science from the University of Tennessee at Knoxville
+              </p>
+              
+              </div>
+              
+<!--               <a th:href="@{/paciente/AddPatologia(id=${paciente.id})}" class="btn btn-success btn-raised btn-block"><b>Add Patologia</b></a> -->
+              
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Endereco</strong>
+
+              <p class="text-muted" th:utext="${paciente.endereco}">Malibu, California</p>
+
+<!--               <a th:href="@{/paciente/AddPatologia(id=${paciente.id})}" class="btn btn-info btn-raised btn-block"><b>Mapa</b></a> -->
+
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Caracteristicas</strong>
+
+              <p>
+                <span class="label label-danger">Consciente</span>
+                <span class="label label-success">Participativo</span>
+                <span class="label label-info">Dependente</span>
+                <span class="label label-warning">PHP</span>
+                <span class="label label-primary">Node.js</span>
+              </p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notas</strong>
+
+              <p th:utext="${paciente.obs}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+
+			  <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-purple">
+              <h3 class="widget-user-username" th:text="${paciente.nome}">Nome do Paciente</h3>
+              <h5 class="widget-user-desc" th:text="${paciente.tipoterapia}">Tipo &amp; TERAPIA</h5>
+            </div>
+            
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/> -->
+<!--             </div> -->
+            
+                        <div class="widget-user-image" th:unless="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file unles"/>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar pac if"/>
+            </div>
+            
+<!--                                    <div class="widget-user-image" th:unless="${paciente.foto}"> -->
+<!--               <img class="img-circle" th:src="@{/img/paciente/avatar2.png}" alt="User Avatar pac unlesss"/> -->
+<!--             </div> -->
+            
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="description-block">
+
+                    <h5 class="description-header" th:unless="${paciente.id}">
+                    
+
+                    
+                    </h5>
+                    
+                    <h5 class="description-header" th:if="${paciente.id}">
+                    
+
+                    
+                    </h5>
+                    
+                    
+                    
+                    
+                    
+                   
+                  </div>
+                  
+                  
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+         			
+	</section>
+				
+				
+	</div>
+				
+				
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+				
+</div>
+				
+</body>
+
+</html>

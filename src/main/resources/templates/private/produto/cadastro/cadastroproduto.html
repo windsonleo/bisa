@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro de Produtos</title>
+
+<body  class="theme-red">
+				    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING..." />
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+			
+
+	   			  <nav th:replace="fragmentos/top-nav :: top-nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+    
+    
+		<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    PRODUTO
+<!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+            
+                        			 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			 <div class="card">
+			  <div class="header">
+                            <h2>
+                                foto produto
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+<!--                                         <li><a th:href="@{/usuario/cadastro}">Add</a></li> -->
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+<!-- 			<div class="col-md-4" style="margin:5px;"> -->
+			
+			<form th:action="@{/produto/salvarfotoproduto}" ModelAttribute="produto"  enctype="multipart/form-data"  method="post">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc"  th:text="${produto.descricao}">Founder &amp; CEO</h5>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${produto.foto}">
+              <img class="img-circle" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="User Avatar usu if" width="64" height="64"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${produto.foto}">
+              <img class="img-circle" th:src="@{/img/produto/{fotoc}(fotoc=${filename})}" alt="User Avatar usu unless" width="64" height="64" />
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+                 <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+<!--                   <p class="help-block">Example block-level help text here.</p> -->
+                </div>
+                   
+<!--                     <h5 class="description-header"> -->
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+<!--                     </h5> -->
+                    
+<!--                     <span class="description-text"><i class="fa fa-photo"></i></span> -->
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+<!--         </div> -->
+        </div>
+        </div>
+<!-- 			</div> -->
+			</div>
+            
+           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			 <div class="card">
+			  <div class="header">
+                            <h2>
+                                DADOS 
+                    PRODUTO
+
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+<!--                                         <li><a th:href="@{/usuario/cadastro}">Add</a></li> -->
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+		 
+			 
+				 <form th:action="@{/produto/add}" ModelAttribute="produto" method="POST" th:object="${produto}">      
+      
+                 
+                             
+                             
+			<div class="checkbox">
+                <label>
+				<input id="ativo" name="optionsCheckboxes"  type="checkbox" th:checked="${produto.ativo}" class="checkbox"/>Ativo?
+				</label>
+              </div>
+
+						<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                  </div>
+                                    <input id="id" class="form-control" name="id" type="text" th:value="${produto.id}"
+                                           placeholder="Nao Preencha este Campo" readonly="readonly"/> 
+                                </div>
+                            </div>
+<!--                             </div> -->
+
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="nome" class="form-control" name="nome" type="text"
+											th:value="${produto.nome}" placeholder="Nome"> </input>
+									</div>
+								</div>
+								
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="descricao" class="form-control" name="descricao" type="text"
+											th:value="${produto.descricao}" placeholder="descricao"> </input>
+									</div>
+								</div>
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="codebar" class="form-control" name="codebar" type="text"
+											th:value="${produto.codebar}" placeholder="codebar"> </input>
+									</div>
+								</div>		
+								
+                           <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+                                    <input th:unless="${produto.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
+                                           placeholder="Foto"> </input>
+                                           
+                                        <input   th:if="${produto.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${produto.foto}"
+                                           placeholder="Foto"> </input>
+                                           
+                                           
+                                </div>
+                            </div>						
+								
+
+                            
+                            
+							
+							<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+
+                                    <select id="un_medida" name="un_medida" class="form-control">
+                                        <optgroup label="Escolha o tipO un_medida">
+
+                                            <option th:value="${produto.un_medida}" th:selected="selected"
+                                            th:utext="${produto.un_medida}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipoterapia: ${un_medida}" th:value="${tipoterapia}" th:utext="${tipoterapia}"> tipo </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+                            	<div class="form-group label-floating ">
+                                                         <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+
+                                    <select id="categoria" name="categoria" class="form-control">
+                                        <optgroup label="Escolha A categoria">
+
+                                            <option th:value="${produto.categoria}" th:selected="selected"
+                                            th:utext="${produto.categoria}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipoterapia: ${categoria}" th:value="${tipoterapia}" th:utext="${tipoterapia}"> tipo </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="precocusto" class="form-control" name="precocusto" type="text"
+											th:value="${produto.precocusto}" placeholder="precocusto"> </input>
+									</div>
+								</div>	
+								
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="precovenda" class="form-control" name="precovenda" type="text"
+											th:value="${produto.precovenda}" placeholder="precovenda"> </input>
+									</div>
+								</div>	                            
+                            
+                            
+                            
+                            
+                            <div class="form-actions">
+                                <input type="submit" th:value="${acao}" class="btn btn-success"> </input>
+                            </div>
+                        </form>
+                        
+                        	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+
+        
+        
+        
+        
+    </div>
+		
+		
+            
+            
+
+</div>
+
+</section>
+
+
+			
+</body>
+			
+			
+</html>
+

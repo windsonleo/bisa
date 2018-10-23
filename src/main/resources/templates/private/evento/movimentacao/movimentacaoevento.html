@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+		<link rel="stylesheet" media="screen"
+	href="resources/static/css/dataTables.bootstrap.css"
+	th:href="@{/css/dataTables.bootstrap.css}" type="text/css" />
+	
+	</head>
+		
+		<title>Movimentacao Evento</title>
+
+<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+					  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Eventos
+        <small>Movimentacoes</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Eventos</a></li>
+        <li class="active"><a href="#">Movimentacoes</a></li>
+<!--         <li class="active">Blank page</li> -->
+      </ol>
+    </section>
+    
+    
+		 <div class="content">
+
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listagem de Eventos  <a rel="tooltip" title="Adicionar Evento"  th:href="@{/evento/cadastro}"> <i class="fa fa-user-plus"></i></a></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                                            <th class="hide">Id</th>
+                                             <th >Titulo</th>
+                                            <th >Inicio</th>
+                                            <th >Fim</th>
+                                             <th >Cor Fundo</th>
+                                             <th >Cor Borda</th>
+                                            <th >Url</th>
+                                            <th >Ativo</th>
+                                            
+                                   
+                                            
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
+                                   <th >OPERACOES</th>
+                                   
+                                  
+                                  
+                                  </div>
+                                    </tr>
+                                            
+<!--                                             <th >2º Premio</th> -->
+<!--                                             <th >3º Premio</th> -->
+<!--                                             <th >4º Premio</th> -->
+<!--                                             <th >5º Premio</th> -->
+
+		
+
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr th:each="evento: ${eventoList}">
+                                                <td th:text="${evento.id}" class="hide">id</td>
+                                           <td th:text="${evento.title}" ></td>
+                                                
+                                                  <td th:text="${evento.start}">nome</td>
+                                                   <td th:text="${evento.end}">telefone</td>
+                                                    <td th:text="${evento.backgroundColor}">cpf</td>
+                                                  <td th:text="${evento.borderColor}">Data</td>
+                                                   <td th:text="${evento.url}">ativo</td>
+		                                            <td th:text="${evento.ativo}">ativo</td>
+<!-- 		                                             <td th:text="${jogobicho.banca}">Banca</td> -->
+		                                            
+<!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
+		                                          
+		                                         <td>
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                            
+	                                             
+	                                              <div class="btn-group-horizontal" >
+                                                        <a  rel="tooltip" title="Perfil" class="" th:href="@{/evento/perfil(id=${evento.id})}">
+                                    						<i class="material-icons">info</i>
+			                       						</a>
+	                       						 
+                                                        <a  rel="tooltip" title="Editar" class="" th:href="@{/evento/editar(id=${evento.id})}">
+                                    						<i class="material-icons">mode edit</i>
+			                       						</a>
+	                       								                                            
+		                                            																									
+                                                        <a  rel="tooltip" title="Excluir" class="" th:href="@{/evento/delete(id=${evento.id})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>
+	                       						</div>
+	                       						 		
+	                       						 
+					                            </div>
+		                                            </td>
+		                                         
+		                                            
+		                                            
+<!-- 		                                            <td th:text="${jogobicho.segundopremio}" >2º Premio</td> -->
+<!-- 		                                            <td th:text="${jogobicho.terceiropremio}" > 3º Premio</td> -->
+<!-- 		                                            <td th:text="${jogobicho.quartopremio}" >4º Premio </td> -->
+<!-- 		                                            <td th:text="${jogobicho.quintopremio}" >5º Premio</td> -->
+		                      
+		 
+
+		
+                                        
+                                            </tr>
+                                           
+                                           
+                                      
+                                        </tbody>
+                                    </table>
+                                </div>
+		
+
+				<div class="clearfix"></div>
+
+
+             <div th:replace="fragmentos/footer :: footer">
+            
+            </div>
+            
+            
+
+</div>
+
+</div>
+
+</div>
+<!-- </div> -->
+			
+<!-- </div> -->
+
+<!-- 				<div th:replace="fragmentos/side-menu :: side-menu"> -->
+<!-- 		    	</div> -->
+
+		<script src="resources/static/js/jquery-2.2.3.min.js"
+			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
+			
+											<script src="resources/static/js/bootstrap.min.js"
+			th:src="@{/js/bootstrap.min.js}" th:inline="javascript" ></script>
+			
+						<script src="resources/static/js/material.min.js"
+			th:src="@{/js/material.min.js}" th:inline="javascript" ></script>
+			
+									<script src="resources/static/js/ripples.min.js"
+			th:src="@{/js/ripples.min.js}" th:inline="javascript" ></script>
+			
+			
+			<script type="text/javascript">
+    $.material.init();
+</script>
+
+								<script src="resources/static/js/jquery.dataTables.min.js"
+			th:src="@{/js/jquery.dataTables.min.js}" th:inline="javascript" ></script>
+
+								<script src="resources/static/js/dataTables.bootstrap.min.js"
+			th:src="@{/js/dataTables.bootstrap.min.js}" th:inline="javascript" ></script>
+			
+			<script src="resources/static/js/jquery.slimscroll.min.js"
+			th:src="@{/js/jquery.slimscroll.min.js}" th:inline="javascript" ></script>
+	
+			
+						<script src="resources/static/js/fastclick.js"
+			th:src="@{/js/fastclick.js}" th:inline="javascript" ></script>
+			
+					<script src="resources/static/js/app.min.js"
+		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script>
+		 
+		 				<script src="resources/static/js/demo.js"
+			th:src="@{/js/demo.js}"></script>
+
+<script>
+  $(function () {
+//     $("#example1").DataTable();
+    $('#example1').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "language": {
+          "lengthMenu": "Exibir _MENU_ registro por pagina",
+          "zeroRecords": "Nenhum Registro - Desculpe",
+          "info": "Exibindo pagina _PAGE_ of _PAGES_",
+          "infoEmpty": "Nenhum Registro Disponivel",
+          "infoFiltered": "(filtrado de _MAX_ registro)",
+          "search":"Pesquisar:",
+          "paginate": {
+              "first":      "Primeiro",
+              "last":       "Ultimo",
+              "next":       "Proximo",
+              "previous":   "Anterior"
+          }
+          
+      }
+    });
+  });
+</script>
+
+
+</div>	
+
+<!-- </div> -->
+
+<!-- <div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
+			
+</body>
+			
+			
+</html>
+

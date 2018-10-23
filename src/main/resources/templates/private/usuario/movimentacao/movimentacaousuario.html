@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragmentos/head :: head-css">
+
+	<link rel="stylesheet" media="screen"
+	href="resources/static/css/dataTables.bootstrap.css"
+	th:href="@{/css/dataTables.bootstrap.css}" type="text/css" />
+
+</head>
+
+    <title>Movimentacao Usuario</title>
+
+
+
+	<body  class="theme-red">
+				    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING..." />
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+			
+
+	   			  <nav th:replace="fragmentos/top-nav :: top-nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+    
+    
+		<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    USUARIOS
+<!--                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small> -->
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                MOVIMENTACAO USUARIO
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a th:href="@{/usuario/cadastro}">Add</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="example1" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="hide">Id</th>
+                                            <th >Foto</th>
+                                            <th >Email</th>
+                                             <th>Senha</th>
+                                            <th>Permissao</th>
+                                            <th >Ativo</th>
+<!--                                             <th >Resultado</th> -->
+                                            
+                                            
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
+                                   <th >OPERACOES</th>
+                                  
+                                  </div>
+                                            
+
+		
+</tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr th:each="usuario: ${usuarioList}">
+                                                <td th:text="${usuario.id}" class="hide">id</td>
+                                                  <td><img th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" class="img-circle img-sm" width="48" height="48" alt="fotouser"/></td>
+                                                   <td th:text="${usuario.email}">email</td>
+                                                     <td th:text="${usuario.senha}">senha</td>
+                                                    <td th:text="${usuario.roles}">roles</td>
+                                                  
+		                                            <td th:text="${usuario.ativo}">ativo</td>		                                          
+		                                       
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                              <td>
+	                                             
+	                                              <div class="btn-group-horizontal" >
+                                                        <a  rel="tooltip" title="Informacoes" class="" th:href="@{/usuario/perfil(id=${usuario.id})}">
+                                    						<i class="material-icons">info</i>
+			                       						</a>
+	                       						 
+                                                        <a  rel="tooltip" title="Editar" class="" th:href="@{/usuario/editar(id=${usuario.id})}">
+                                    						<i class="material-icons">mode edit</i>
+			                       						</a>
+	                       								                                            
+		                                            																									
+                                                        <a  rel="tooltip" title="Excluir" class="" th:href="@{/usuario/delete(id=${usuario.id})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>
+	                       						</div>
+	                       						 	</td>	
+	                       						 
+					                            </div>
+
+                                        
+                                            </tr>
+                                           
+                       
+                                        </tbody>
+                                    </table>
+                                </div>
+		
+
+				<div class="clearfix"></div>
+
+
+             <div th:replace="fragmentos/footer :: footer">
+            
+            </div>
+            
+            
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+
+
+
+</div>
+</section>
+
+
+<script>
+$(function () {
+//  $("#example1").DataTable();
+ $('#example1').DataTable({
+   "paging": true,
+   "lengthChange": true,
+   "searching": true,
+   "ordering": true,
+   "info": true,
+   "autoWidth": true,
+   "language": {
+       "lengthMenu": "Exibir _MENU_ registro por pagina",
+       "zeroRecords": "Nenhum Registro - Desculpe",
+       "info": "Exibindo pagina _PAGE_ of _PAGES_",
+       "infoEmpty": "Nenhum Registro Disponivel",
+       "infoFiltered": "(filtrado de _MAX_ registro)",
+       "search":"Pesquisar:",
+       "paginate": {
+           "first":      "Primeiro",
+           "last":       "Ultimo",
+           "next":       "Proximo",
+           "previous":   "Anterior"
+       }
+       
+   }
+ });
+});
+</script>
+			
+</body>
+			
+			
+</html>
+

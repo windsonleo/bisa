@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro de Despesas</title>
+
+<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+					  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Despesas
+        <small>Cadastro</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Despesas</a></li>
+        <li class="active"><a href="#">Cadastro</a></li>
+<!--         <li class="active">Blank page</li> -->
+      </ol>
+    </section>
+    
+    
+		 <div class="content">
+				
+				
+<!-- 				mensagens do sistema  -->
+				
+		<div class="row-fluid" th:if="${sucesso}">
+					
+			<div class="alert alert-success">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">check</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${sucesso}">
+					
+					
+					
+					</span>
+					
+					<span class="btn btn-sm btn-warning"><a th:href="@{/despesa/cadastro}"><i></i>Novo</a></span>
+					<span class="btn btn-sm btn-warning"><a th:href="@{/despesa/editar(id=${despesa.id})}"><i></i>Editar</a></span>
+					
+				
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+					
+			<div class="row-fluid" th:if="${erro}">
+					
+			<div class="alert alert-danger">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">error</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${erro}"></span>
+				
+					<span class="btn btn-sm btn-warning"><a th:href="@{/despesa/cadastro}"><i></i>Novo</a></span>
+					<span class="btn btn-sm btn-warning"><a th:href="@{/despesa/editar(id=${despesa.id})}"><i></i>Editar</a></span>
+			
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+				
+<!-- fim das mensagens -->
+
+
+<!-- inicio do conteudo  -->
+
+<!-- <div class="row-fluid"> -->
+			        
+			       
+			  
+			        
+			        
+            <div class="col-md-9 panel">
+		 <div class="col-md-7">
+<!--                       <div class="panel form-element-padding"> -->
+                        <div class="panel-heading">
+                         <h4>Cadastro de Despesa</h4>
+                        </div>
+                         <div class="panel-body" style="padding-bottom:30px;">
+		 
+			 
+				 <form th:action="@{/despesa/add}" ModelAttribute="despesa" method="POST" th:object="${despesa}">      
+      
+	
+                             
+                             
+			<div class="checkbox">
+                <label>
+				<input id="ativo" name="optionsCheckboxes"  type="checkbox" th:checked="${despesa.ativo}" class="checkbox"/>Ativo?
+				</label>
+              </div>
+
+						<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                  </div>
+                                    <input id="id" class="form-control" name="id" type="text" th:value="${despesa.id}"
+                                           placeholder="Nao Preencha este Campo" readonly="readonly"/> 
+                                </div>
+                            </div>
+<!--                             </div> -->
+                            
+                            <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                                    <input id="nome" class="form-control" name="nome" type="text" th:value="${despesa.nome}"
+                                           placeholder="Nome"> </input>
+                                </div>
+                            </div>
+                            
+                        <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar-check-o"></i>
+                  </div>
+                                    <input autocomplete="off" id="data" class="form-control" name="data" type="text" th:field="*{data}"
+                                           placeholder="Data"> </input>
+                                </div>
+                            </div>
+                            
+                     <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar-plus-o"></i>
+                  </div>
+                                    <input autocomplete="off" id="total" class="form-control" name="total" type="text" th:value="${despesa.total}"
+                                           placeholder="Total"> </input>
+                                </div>
+                            </div>
+                            
+                               
+							
+							<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+                  <label>Escolha o tipo de despesa</label>
+
+                                    <select id="tipo" name="tipo" class="form-control select2">
+                                        <optgroup label="Escolha o tipo de despesa">
+
+                                            <option th:value="${despesa.tipo}" th:selected="selected"
+                                            th:utext="${despesa.tipo}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipo: ${tipo}" th:value="${tipo}" th:utext="${tipo}"> tipo </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+
+                            
+                            
+                            <div class="form-actions">
+                                <input type="submit" th:value="${acao}" class="btn btn-success"> </input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        
+        
+        
+        
+        
+    </div>
+		
+		
+            
+            
+
+</div>
+
+</div>
+
+
+
+	<script src="resources/static/js/jquery-2.2.3.min.js"
+			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
+			
+				<script src="resources/static/js/select2.full.min.js"
+			th:src="@{/js/select2.full.min.js}" th:inline="javascript" ></script>
+			
+											<script src="resources/static/js/bootstrap.min.js"
+			th:src="@{/js/bootstrap.min.js}" th:inline="javascript" ></script>
+			
+						<script src="resources/static/js/material.min.js"
+			th:src="@{/js/material.min.js}" th:inline="javascript" ></script>
+			
+									<script src="resources/static/js/ripples.min.js"
+			th:src="@{/js/ripples.min.js}" th:inline="javascript" ></script>
+			
+			
+			
+									<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"
+			th:src="@{https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js}" th:inline="javascript" ></script>
+			
+			
+								<script src="resources/static/js/daterangepicker.js"
+			th:src="@{/js/daterangepicker.js}" type="text/javascript" ></script>
+			
+						<script src="resources/static/js/bootstrap-datepicker.js"
+			th:src="@{/js/bootstrap-datepicker.js}" th:inline="javascript" ></script>
+			
+			
+			<script type="text/javascript">
+    $.material.init();
+    
+    
+//     $(function () {
+    	
+//     $('#datepicker').datepicker({
+//         autoclose: true
+//       });
+    
+//     });
+</script>
+
+								<script src="resources/static/js/jquery.dataTables.min.js"
+			th:src="@{/js/jquery.dataTables.min.js}" th:inline="javascript" ></script>
+
+								<script src="resources/static/js/dataTables.bootstrap.min.js"
+			th:src="@{/js/dataTables.bootstrap.min.js}" th:inline="javascript" ></script>
+			
+			<script src="resources/static/js/jquery.slimscroll.min.js"
+			th:src="@{/js/jquery.slimscroll.min.js}" th:inline="javascript" ></script>
+	
+			
+						<script src="resources/static/js/fastclick.js"
+			th:src="@{/js/fastclick.js}" th:inline="javascript" ></script>
+			
+					<script src="resources/static/js/app.min.js"
+		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script>
+		 
+		 				<script src="resources/static/js/demo.js"
+			th:src="@{/js/demo.js}"></script>
+			
+				    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+			
+			
+			<script type="text/javascript">
+			
+		     $(function () {
+	    	
+		     $('#data').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		     
+		     $('#datainicio').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		     
+		     $('#datafim').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		    
+		     });
+			
+			
+			</script>
+			
+</body>
+			
+			
+</html>
+

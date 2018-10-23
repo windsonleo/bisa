@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+
+	
+	</head>
+		
+		<title>Financeiro</title>
+
+			<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+				
+		  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Financeiro</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Financeiro</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-teal">
+            <div class="inner">
+              <h3  th:text="${totalcomissao}">150</h3>
+
+              <p>Comissoes</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-building"></i>
+            </div>
+            <a th:href="@{/despesa/comissao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-navy">
+            <div class="inner">
+              <h3  th:text="${totaldespesagas}">53<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Gasolina</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-automobile"></i>
+            </div>
+            <a th:href="@{/despesa/gasolina}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-maroon">
+            <div class="inner">
+              <h3 th:text="${totaldespesaalmoco}">44</h3>
+
+              <p>Almoco</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-cutlery"></i>
+            </div>
+            <a th:href="@{/despesa/almoco}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-purple">
+            <div class="inner">
+              <h3 th:text="${totalall}">65</h3>
+
+              <p>Todas</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-money"></i>
+            </div>
+            <a th:href="@{/despesa/movimentacao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <!-- Main row -->
+      <div class="row">
+
+</div>
+
+
+    </section>
+    
+           
+    <!-- /.content -->
+  </div>
+
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+	
+	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+			
+	
+		</div>	
+		
+		
+		
+				  <script type="text/javascript" th:inline="javascript"> 
+			
+			
+		  <!-- Page specific script -->
+		  
+		  /*<![CDATA[*/
+			  
+			   $(function () {
+			  
+			   $(".select2").select2();
+			   
+			   });
+		  
+
+			    $(".timepicker").timepicker({
+			        showInputs: false
+			      });
+			  
+	    $('#calendar').datepicker({
+	    	format: 'dd/mm/yyyy',
+	    	language: 'pt-BR',
+	    	weekStart: 0,
+	    	startDate:'0d',
+	    	todayHighlight: true
+	    });
+		  
+		  
+	    $('#world-map-markers').vectorMap({
+	        map: 'world_mill_en',
+	        normalizeFunction: 'polynomial',
+	        hoverOpacity: 0.7,
+	        hoverColor: false,
+	        backgroundColor: 'transparent',
+	        regionStyle: {
+	          initial: {
+	            fill: 'rgba(210, 214, 222, 1)',
+	            "fill-opacity": 1,
+	            stroke: 'none',
+	            "stroke-width": 0,
+	            "stroke-opacity": 1
+	          },
+	          hover: {
+	            "fill-opacity": 0.7,
+	            cursor: 'pointer'
+	          },
+	          selected: {
+	            fill: 'yellow'
+	          },
+	          selectedHover: {}
+	        },
+	        markerStyle: {
+	          initial: {
+	            fill: '#00a65a',
+	            stroke: '#111'
+	          }
+	        },
+	        markers: [
+	          {latLng: [41.90, 12.45], name: 'Vatican City'},
+	          {latLng: [43.73, 7.41], name: 'Monaco'},
+	          {latLng: [-0.52, 166.93], name: 'Nauru'},
+	          {latLng: [-8.51, 179.21], name: 'Tuvalu'},
+	          {latLng: [43.93, 12.46], name: 'San Marino'},
+	          {latLng: [47.14, 9.52], name: 'Liechtenstein'},
+	          {latLng: [7.11, 171.06], name: 'Marshall Islands'},
+	          {latLng: [17.3, -62.73], name: 'Saint Kitts and Nevis'},
+	          {latLng: [3.2, 73.22], name: 'Maldives'},
+	          {latLng: [35.88, 14.5], name: 'Malta'},
+	          {latLng: [12.05, -61.75], name: 'Grenada'},
+	          {latLng: [13.16, -61.23], name: 'Saint Vincent and the Grenadines'},
+	          {latLng: [13.16, -59.55], name: 'Barbados'},
+	          {latLng: [17.11, -61.85], name: 'Antigua and Barbuda'},
+	          {latLng: [-4.61, 55.45], name: 'Seychelles'},
+	          {latLng: [7.35, 134.46], name: 'Palau'},
+	          {latLng: [42.5, 1.51], name: 'Andorra'},
+	          {latLng: [14.01, -60.98], name: 'Saint Lucia'},
+	          {latLng: [6.91, 158.18], name: 'Federated States of Micronesia'},
+	          {latLng: [1.3, 103.8], name: 'Singapore'},
+	          {latLng: [1.46, 173.03], name: 'Kiribati'},
+	          {latLng: [-21.13, -175.2], name: 'Tonga'},
+	          {latLng: [15.3, -61.38], name: 'Dominica'},
+	          {latLng: [-20.2, 57.5], name: 'Mauritius'},
+	          {latLng: [26.02, 50.55], name: 'Bahrain'},
+	          {latLng: [0.33, 6.73], name: 'São Tomé and Príncipe'}
+	        ]
+	      });
+	    
+	    
+	     $('#datainicio').datepicker({
+	         autoclose: true,
+	         format: 'dd/mm/yyyy',
+		    	language: 'pt-BR'
+	       });
+	     
+	     $('#datafim').datepicker({
+	         autoclose: true,
+	         format: 'dd/mm/yyyy',
+		    	language: 'pt-BR'
+	       });
+	    
+	  
+		  
+		
+	
+	  /*]]>*/
+	</script>
+		
+
+	    
+	    
+</body>
+			
+			
+</html>
+
