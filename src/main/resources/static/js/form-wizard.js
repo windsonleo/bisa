@@ -63,8 +63,10 @@ $(function () {
         },
         onFinished: function (event, currentIndex) {
         	
-        	
+        	form.submit();
             swal("Good job!", "Submitted!", "success");
+            
+            
         }
     });
 
