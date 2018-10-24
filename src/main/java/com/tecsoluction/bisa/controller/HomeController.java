@@ -129,19 +129,19 @@ public class HomeController {
     
     
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView Login(Locale locale, Model model) {
-      
-    	logger.info("Welcome login! The client locale is {}.", locale);
-
-
-        ModelAndView login = new ModelAndView("/public/login");
-        
-//        login.addObject("usuario", new Usuario());
-
-
-        return login;
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public ModelAndView Login(Locale locale, Model model) {
+//      
+//    	logger.info("Welcome login! The client locale is {}.", locale);
+//
+//
+//        ModelAndView login = new ModelAndView("/public/login");
+//        
+////        login.addObject("usuario", new Usuario());
+//
+//
+//        return login;
+//    }
     
     @RequestMapping(value = "/cardapio", method = RequestMethod.GET)
     public ModelAndView cardapio(Locale locale, Model model) {

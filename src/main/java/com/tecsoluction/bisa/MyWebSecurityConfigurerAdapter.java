@@ -74,13 +74,13 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/private/**").hasAnyRole("CLIENTE","ADM").anyRequest().authenticated()
 				.and()
 				.csrf().disable().formLogin()
-				.loginPage("/login").failureUrl("/error")
+				.loginPage("/").failureUrl("/error")
 				.defaultSuccessUrl("/home")
 				.usernameParameter("email")
 				.passwordParameter("senha")
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/login").and().exceptionHandling()
+				.logoutSuccessUrl("/").and().exceptionHandling()
 				.accessDeniedPage("/accessdenied");
 				
 //		http.sessionManagement().maximumSessions(sessaoMax).and().invalidSessionUrl("/sessaoinvalida").and()
