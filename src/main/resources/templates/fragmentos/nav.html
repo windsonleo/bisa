@@ -64,6 +64,8 @@
                         </a>
                     </li>
                     
+                    <div sec:authorize="hasRole('ROLE_ADM')">
+                    
                                         <li>
                         <a th:href="@{/cliente/movimentacao}">
                             <i class="material-icons">text_fields</i>
@@ -104,7 +106,7 @@
                        
                     </li>
                     
-
+					</div>
 
                 </ul>
             </div>
